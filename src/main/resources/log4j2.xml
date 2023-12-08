@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="StorageConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} : %msg%n}{INFO=white}" disableAnsi="false"/>
+            <MarkerFilter marker="STORAGE_INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+        <Console name="ThreadConsole" target="SYSTEM_OUT">
+            <MarkerFilter marker="THREAD_INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} thread %t : %msg%n}{INFO=blue}" disableAnsi="false"/>
+        </Console>
+        <Console name="ProducerConsole" target="SYSTEM_OUT">
+            <MarkerFilter marker="PRODUCER" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} thread %t : %msg%n}{INFO=green}" disableAnsi="false"/>
+        </Console>
+        <Console name="ConsumerConsole" target="SYSTEM_OUT">
+            <MarkerFilter marker="CONSUMER" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} thread %t : %msg%n}{INFO=magenta}" disableAnsi="false"/>
+        </Console>
+        <File name="File" fileName="task5/src/main/resources/factory.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} thread %t : %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="StorageConsole"/>
+            <AppenderRef ref="ThreadConsole"/>
+            <AppenderRef ref="ProducerConsole"/>
+            <AppenderRef ref="ConsumerConsole"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
